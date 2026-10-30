@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سامانه جامع خدمات داروخانه‌ای و سلامت الکترونیک تفت و یزد (دارو‌تفت)</title>
+  
+  <!-- فونت زیبای وزیرمتن و فونت آیکون‌ها -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* =========================================================
+       پالت رنگی لوکس و گرم: شرابی، بنفش، یاسی، صورتی و کرم
+       ========================================================= */
+    :root {
+      --bg-cream: #FCF9F5;
+      --bg-cream-card: #FFFFFF;
+      --wine-primary: #590d22;
+      --wine-dark: #38040e;
+      --purple-accent: #7209b7;
+      --purple-light: #9d4edd;
+      --pink-neon: #f72585;
+      --pink-glow: #ff4d87;
+      --lilac-soft: #e0b1cb;
+      --lilac-bg: #f7eef7;
+      --gold-accent: #e0a96d;
+      --gold-light: #fbeee0;
+      --text-dark: #2b091f;
+      --text-muted: #6e5564;
+      --glass-border: rgba(255, 255, 255, 0.6);
+      --glass-card: rgba(255, 255, 255, 0.85);
+      --shadow-soft: 0 10px 30px rgba(114, 9, 183, 0.08);
+      --shadow-neon: 0 10px 25px rgba(247, 37, 133, 0.25);
+      --transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Vazirmatn', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(157, 78, 221, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 90% 40%, rgba(247, 37, 133, 0.07) 0%, transparent 45%),
+        radial-gradient(circle at 30% 85%, rgba(89, 13, 34, 0.06) 0%, transparent 50%);
+      background-attachment: fixed;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* هدر و ناوبری شیشه‌ای */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(252, 249, 245, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(224, 177, 203, 0.4);
+      padding: 14px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(89, 13, 34, 0.04);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo .logo-icon {
+      width: 46px;
+      height: 46px;
+      background: linear-gradient(135deg, var(--wine-primary), var(--pink-neon));
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      box-shadow: var(--shadow-neon);
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    .brand-logo .logo-text h1 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--wine-dark), var(--purple-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-logo .logo-text span {
+      font-size: 0.75rem;
+      color: var(--pink-neon);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 22px;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    nav a:hover {
+      color: var(--pink-neon);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--pink-neon), var(--purple-light));
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .btn-header {
+      background: linear-gradient(135deg, var(--purple-accent), var(--pink-neon));
+      color: white;
+      padding: 10px 22px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 15px rgba(247, 37, 133, 0.3);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-header:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(247, 37, 133, 0.45);
+    }
+
+    /* هیرو بنر جذاب و فانتزی */
+    .hero {
+      padding: 70px 6% 90px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 50px;
+      position: relative;
+    }
+
+    .hero-content .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg, #fceef6, #eedef5);
+      border: 1px solid var(--lilac-soft);
+      padding: 6px 16px;
+      border-radius: 20px;
+      color: var(--wine-primary);
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero-content h2 {
+      font-size: 2.85rem;
+      line-height: 1.35;
+      font-weight: 900;
+      color: var(--wine-dark);
+      margin-bottom: 20px;
+    }
+
+    .hero-content h2 span {
+      background: linear-gradient(120deg, var(--pink-neon), var(--purple-accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 10px rgba(247, 37, 133, 0.15);
+    }
+
+    .hero-content p {
+      font-size: 1.12rem;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+      max-width: 90%;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-main {
+      background: linear-gradient(135deg, var(--wine-primary), var(--purple-accent));
+      color: white;
+      padding: 14px 34px;
+      border-radius: 35px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.05rem;
+      box-shadow: 0 8px 25px rgba(89, 13, 34, 0.35);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(114, 9, 183, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--wine-primary);
+      padding: 14px 28px;
+      border-radius: 35px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 2px solid var(--lilac-soft);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--lilac-bg);
+      border-color: var(--purple-accent);
+      color: var(--purple-accent);
+    }
+
+    /* کارت گرافیکی هیرو */
+    .hero-card-wrapper {
+      position: relative;
+    }
+
+    .floating-card {
+      background: var(--glass-card);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: 0 20px 45px rgba(89, 13, 34, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .floating-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(247, 37, 133, 0.15) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 25px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-box {
+      background: white;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(224, 177, 203, 0.4);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .stat-box:hover {
+      transform: translateY(-4px);
+      border-color: var(--pink-neon);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stat-box .stat-icon {
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .stat-box h4 {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--wine-primary);
+    }
+
+    .stat-box p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* تگ‌های مزیت رقابتی بالای صفحه */
+    .hero-features-chips {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--lilac-soft);
+      padding: 6px 14px;
+      border-radius: 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* عناوین بخش‌ها */
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .section-title .sub-title {
+      color: var(--pink-neon);
+      font-weight: 800;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .section-title h3 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--wine-dark);
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 10px auto 0;
+      font-size: 1.05rem;
+    }
+
+    /* =========================================================
+       بخش اول: پرونده دیجیتال و تحلیلی مستند (پوشش ویژه شهرستان تفت)
+       ========================================================= */
+    .dossier-section {
+      background: linear-gradient(180deg, #fff9fc 0%, #f6ecf6 100%);
+      padding: 80px 6%;
+      border-radius: 40px;
+      margin: 40px 3%;
+      border: 2px solid #ecd3e5;
+      box-shadow: 0 15px 40px rgba(114, 9, 183, 0.05);
+    }
+
+    .proof-banner {
+      background: linear-gradient(135deg, #fff0f5, #fffaff);
+      border-right: 6px solid var(--pink-neon);
+      border-radius: 20px;
+      padding: 24px 30px;
+      margin-bottom: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .proof-banner-text h4 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--wine-primary);
+      margin-bottom: 6px;
+    }
+
+    .proof-banner-text p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .proof-badge {
+      background: var(--pink-neon);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      white-space: nowrap;
+      box-shadow: 0 4px 15px rgba(247, 37, 133, 0.35);
+    }
+
+    /* شبیه‌ساز اسکرین‌شات‌ها و ادله نفی رقبای بزرگ در تفت */
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .evidence-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid #e8cee2;
+      box-shadow: 0 8px 25px rgba(89, 13, 34, 0.05);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .evidence-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(114, 9, 183, 0.12);
+      border-color: var(--purple-accent);
+    }
+
+    .evidence-header {
+      padding: 16px 20px;
+      background: #faf4f8;
+      border-bottom: 1px solid #ebd4e5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .evidence-header h5 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--wine-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-pill-fail {
+      background: #ffe5ec;
+      color: #d90429;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 12px;
+      border: 1px solid #ffccd5;
+    }
+
+    .evidence-body {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .mockup-ui {
+      background: #fdfafc;
+      border: 2px dashed #e2c0d8;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 15px;
+      font-size: 0.85rem;
+    }
+
+    .mockup-error {
+      background: #fff0f3;
+      color: #900c3f;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-right: 4px solid #c70039;
+    }
+
+    .evidence-footer {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid #f3e5f0;
+      padding-top: 12px;
+      font-weight: 500;
+    }
+
+    /* زبانه (تب) های پرونده تحلیلی */
+    .dossier-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 35px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: white;
+      border: 2px solid #e0b1cb;
+      color: var(--wine-primary);
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      background: linear-gradient(135deg, var(--wine-primary), var(--purple-accent));
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 6px 20px rgba(114, 9, 183, 0.3);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* استایل‌های محتوای پرسش‌های هشت‌گانه و بوم */
+    .questions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .question-card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid #ecd3e5;
+      box-shadow: 0 5px 20px rgba(89, 13, 34, 0.04);
+      position: relative;
+    }
+
+    .question-card .q-num {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      width: 32px;
+      height: 32px;
+      background: var(--lilac-bg);
+      color: var(--purple-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 0.85rem;
+    }
+
+    .question-card h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--wine-dark);
+      margin-bottom: 12px;
+      padding-left: 35px;
+    }
+
+    .question-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* بوم کسب و کار مدرن */
+    .canvas-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .canvas-box {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid #e8cee2;
+      box-shadow: 0 4px 15px rgba(89, 13, 34, 0.03);
+    }
+
+    .canvas-box.span-2 {
+      grid-column: span 2;
+    }
+
+    .canvas-box h5 {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--wine-primary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid var(--lilac-bg);
+      padding-bottom: 8px;
+    }
+
+    .canvas-box ul {
+      list-style-type: disc;
+      padding-right: 18px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .canvas-box ul li {
+      margin-bottom: 6px;
+    }
+
+    /* =========================================================
+       بخش دوم: کامپوننت هسته اصلی (ثبت و آماده‌سازی نسخه)
+       ========================================================= */
+    .core-section {
+      padding: 70px 6%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .rx-box {
+      background: white;
+      border-radius: 32px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(89, 13, 34, 0.08);
+      border: 2px solid #ecd3e5;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      color: var(--wine-dark);
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1.5px solid #dfc2d7;
+      background: #fdfbfd;
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      border-color: var(--purple-accent);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(114, 9, 183, 0.1);
+    }
+
+    .upload-zone {
+      border: 2.5px dashed var(--purple-light);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      background: var(--lilac-bg);
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 25px;
+    }
+
+    .upload-zone:hover {
+      border-color: var(--pink-neon);
+      background: #fdf2f7;
+    }
+
+    .upload-zone i {
+      font-size: 2.8rem;
+      color: var(--purple-accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* کارت‌های انتخاب داروخانه فعال در تفت و یزد */
+    .pharmacy-selector {
+      margin-bottom: 30px;
+    }
+
+    .pharmacy-selector label {
+      font-weight: 800;
+      color: var(--wine-dark);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .pharmacy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .pharmacy-card {
+      border: 2px solid #ecd3e5;
+      border-radius: 18px;
+      padding: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+      background: #faf4f8;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .pharmacy-card.selected, .pharmacy-card:hover {
+      border-color: var(--pink-neon);
+      background: white;
+      box-shadow: var(--shadow-soft);
+      transform: translateY(-2px);
+    }
+
+    .pharmacy-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--lilac-soft), var(--lilac-bg));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--wine-primary);
+      font-size: 1.2rem;
+    }
+
+    .pharmacy-info h6 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--wine-dark);
+      margin-bottom: 4px;
+    }
+
+    .pharmacy-info p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    /* =========================================================
+       بخش سوم: سرویس‌های مکمل (اقساط، وام، خیریه و تجهیزات)
+       ========================================================= */
+    .services-section {
+      padding: 80px 6%;
+      background: #fff8fc;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      max-width: 1250px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 28px;
+      padding: 35px 28px;
+      border: 1px solid #ebd4e5;
+      box-shadow: 0 10px 30px rgba(89, 13, 34, 0.05);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 45px rgba(114, 9, 183, 0.12);
+      border-color: var(--purple-accent);
+    }
+
+    .service-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: var(--lilac-bg);
+      color: var(--purple-accent);
+    }
+
+    .service-header {
+      margin-bottom: 20px;
+    }
+
+    .service-icon-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #fff0f5, #f3e5f5);
+      border: 1px solid #e0b1cb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--pink-neon);
+      margin-bottom: 18px;
+    }
+
+    .service-card h4 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--wine-dark);
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* کامپوننت تعاملی ماشین حساب اقساط سلامت */
+    .calculator-box {
+      background: #faf4f8;
+      border-radius: 20px;
+      padding: 20px;
+      margin-top: 15px;
+      border: 1px solid #ebd3e4;
+    }
+
+    .calc-range-group {
+      margin-bottom: 16px;
+    }
+
+    .calc-range-group label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--wine-primary);
+      margin-bottom: 8px;
+    }
+
+    input[type=range] {
+      width: 100%;
+      accent-color: var(--pink-neon);
+      cursor: pointer;
+    }
+
+    .calc-result {
+      background: white;
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid var(--lilac-soft);
+    }
+
+    .calc-result span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .calc-result strong {
+      font-size: 1.15rem;
+      color: var(--wine-primary);
+      font-weight: 900;
+    }
+
+    /* کامپوننت تعاملی صندوق نیکوکاری دارو */
+    .charity-box {
+      background: #fff0f5;
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid #ffd1dc;
+    }
+
+    .donation-buttons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-donate-amount {
+      flex: 1;
+      min-width: 75px;
+      background: white;
+      border: 1px solid #e0b1cb;
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--wine-primary);
+    }
+
+    .btn-donate-amount.active, .btn-donate-amount:hover {
+      background: var(--pink-neon);
+      color: white;
+      border-color: transparent;
+    }
+
+    .btn-donate-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #d81159, #8f2d56);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-donate-submit:hover {
+      box-shadow: 0 4px 15px rgba(216, 17, 89, 0.4);
+    }
+
+    /* تجهیزات پزشکی کاتالوگ */
+    .equipment-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .equipment-item {
+      background: white;
+      border: 1px solid #edd5e6;
+      border-radius: 14px;
+      padding: 10px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .equipment-item:hover {
+      border-color: var(--purple-accent);
+      transform: scale(1.03);
+    }
+
+    .equipment-item img {
+      width: 100%;
+      height: 75px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 6px;
+    }
+
+    .equipment-item h6 {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--wine-dark);
+      margin-bottom: 2px;
+    }
+
+    .equipment-item span {
+      font-size: 0.72rem;
+      color: var(--pink-neon);
+      font-weight: 700;
+      display: block;
+    }
+
+    /* =========================================================
+       بخش چهارم: بوم پویا و داشبورد پیگیری زنده سفارش (Stepper)
+       ========================================================= */
+    .tracking-section {
+      padding: 70px 6%;
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .tracker-card {
+      background: white;
+      border-radius: 30px;
+      padding: 40px;
+      border: 2px solid #ecd3e5;
+      box-shadow: 0 15px 45px rgba(89, 13, 34, 0.06);
+    }
+
+    .stepper {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 40px 0 30px;
+    }
+
+    .stepper::before {
+      content: '';
+      position: absolute;
+      top: 26px;
+      right: 5%;
+      width: 90%;
+      height: 4px;
+      background: #e8d0e2;
+      z-index: 0;
+    }
+
+    .step-item {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      width: 16%;
+    }
+
+    .step-bubble {
+      width: 52px;
+      height: 52px;
+      background: white;
+      border: 3px solid #e0c2d8;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .step-item.completed .step-bubble {
+      background: var(--purple-accent);
+      border-color: var(--purple-accent);
+      color: white;
+    }
+
+    .step-item.active .step-bubble {
+      background: var(--pink-neon);
+      border-color: var(--pink-neon);
+      color: white;
+      box-shadow: 0 0 0 6px rgba(247, 37, 133, 0.25);
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+    .step-item h6 {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--wine-dark);
+      margin-bottom: 2px;
+    }
+
+    .step-item p {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* پاپ‌آپ و پیام‌های سیستمی */
+    .alert-success-custom {
+      background: #ebfbee;
+      border-right: 5px solid #2b8a3e;
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #2b8a3e;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 25px;
+    }
+
+    /* فوتر مجلل */
+    footer {
+      background: linear-gradient(180deg, #38040e 0%, #220108 100%);
+      color: #f7eef7;
+      padding: 70px 6% 30px;
+      margin-top: 80px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+
+    .footer-col h4 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--lilac-soft);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 35px;
+      height: 2px;
+      background: var(--pink-neon);
+    }
+
+    .footer-col p {
+      font-size: 0.9rem;
+      color: #d8b4cc;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #ebd3e5;
+      font-size: 0.88rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-links a:hover {
+      color: var(--pink-neon);
+      transform: translateX(-4px);
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      color: #ecd3e5;
+    }
+
+    .footer-contact-item i {
+      color: var(--pink-neon);
+      font-size: 1.1rem;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid rgba(224, 177, 203, 0.2);
+      padding-top: 25px;
+      font-size: 0.85rem;
+      color: #a47696;
+    }
+
+    /* انیمیشن‌ها */
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 10px rgba(247, 37, 133, 0.3);
+      }
+      100% {
+        box-shadow: 0 0 25px rgba(247, 37, 133, 0.7);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ریسپانسیو و حالت موبایل */
+    @media (max-width: 992px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 40px;
+      }
+      .hero-content p {
+        margin: 0 auto 30px;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .hero-features-chips {
+        justify-content: center;
+      }
+      .canvas-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .stepper {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .stepper::before {
+        display: none;
+      }
+      .step-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        text-align: right;
+      }
+      .step-bubble {
+        margin: 0;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- هدر شیشه‌ای لوکس -->
+  <header>
+    <a href="#" class="brand-logo">
+      <div class="logo-icon">
+        <i class="fa-solid fa-mortar-pestle"></i>
+      </div>
+      <div class="logo-text">
+        <h1>دارو‌تفت | نسخه آنلاین</h1>
+        <span>سامانه تخصصی سلامت الکترونیک تفت و یزد</span>
+      </div>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="#dossier"><i class="fa-solid fa-file-shield"></i> پرونده میدانی تفت</a></li>
+        <li><a href="#core-rx"><i class="fa-solid fa-prescription"></i> ثبت نسخه فوری</a></li>
+        <li><a href="#installments"><i class="fa-solid fa-calculator"></i> اقساط و وام</a></li>
+        <li><a href="#charity"><i class="fa-solid fa-hand-holding-heart"></i> صندوق مهربانی</a></li>
+        <li><a href="#equipment"><i class="fa-solid fa-wheelchair"></i> تجهیزات پزشکی</a></li>
+        <li><a href="#tracking"><i class="fa-solid fa-route"></i> پیگیری زنده</a></li>
+      </ul>
+    </nav>
+
+    <a href="#core-rx" class="btn-header">
+      <i class="fa-solid fa-paper-plane"></i>
+      <span>ارسال نسخه رایگان</span>
+    </a>
+  </header>
+
+  <!-- بخش اول: هیرو بنر مدرن -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="badge">
+        <i class="fa-solid fa-certificate" style="color: var(--pink-neon);"></i>
+        پروژه اعتبارسنجی شده تجارت الکترونیک - ویژه شهرستان تفت
+      </div>
+      <h2>
+        پایان معطلی در داروخانه!<br>
+        نسخه‌ات رو <span>آنلاین آماده کن</span>،<br>
+        فقط برای تحویل در تفت برو! 💊
+      </h2>
+      <p>
+        پلتفرم‌های کشوری مثل اسنپ‌دکتر و تپسی‌دارو، شهرستان تفت را به عنوان محدوده خارج از سرویس می‌شناسند! 
+        سامانه «داروتفت» این خلأ را پوشش داده تا بیماران بدون اتلاف وقت و صف‌های شلوغ، نسخه خود را آماده و با امکان پرداخت منعطف اقساطی تحویل بگیرند.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#core-rx" class="btn-main">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          ثبت و استعلام نسخه پیش از مراجعه
+        </a>
+        <a href="#dossier" class="btn-secondary">
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+          مشاهده شواهد شکست رقبای کشوری
+        </a>
+      </div>
+
+      <div class="hero-features-chips">
+        <div class="chip">✨ کاهش زمان انتظار از ۴۵ به ۲ دقیقه</div>
+        <div class="chip">💳 امکان تقسیط نسخه و تجهیزات</div>
+        <div class="chip">📍 پوشش کامل بلوار شهدای پرواز، غیاث‌آباد و مرکز تفت</div>
+      </div>
+    </div>
+
+    <!-- کارت وضعیت زنده هیرو -->
+    <div class="hero-card-wrapper">
+      <div class="floating-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+          <span style="font-size: 0.85rem; font-weight: 800; color: var(--wine-primary);">
+            <i class="fa-solid fa-tower-broadcast" style="color: #2b8a3e; margin-left: 6px;"></i> وضعیت شبکه داروخانه‌ای تفت
+          </span>
+          <span style="background: #e8f5e9; color: #2e7d32; font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 12px;">
+            فعال و آماده‌باش
+          </span>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1586015555751-63bb77f4322a?auto=format&fit=crop&w=700&q=80" 
+             alt="داروخانه و نسخه مدرن" 
+             style="width: 100%; height: 180px; object-fit: cover; border-radius: 18px; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+
+        <div class="hero-stats-grid">
+          <div class="stat-box">
+            <span class="stat-icon">⏱️</span>
+            <h4>۰ دقیقه</h4>
+            <p>معطلی و انتظار در صف</p>
+          </div>
+          <div class="stat-box">
+            <span class="stat-icon">🏥</span>
+            <h4>۵ داروخانه</h4>
+            <p>عضو در تفت و یزد</p>
+          </div>
+          <div class="stat-box">
+            <span class="stat-icon">💎</span>
+            <h4>۱۰۰٪ شفاف</h4>
+            <p>قیمت و اقلام قبل از خروج از منزل</p>
+          </div>
+          <div class="stat-box">
+            <span class="stat-icon">🤝</span>
+            <h4>صندوق خیریه</h4>
+            <p>حمایت از بیماران نیازمند منطقه</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       بخش اول مستندات: پرونده تحلیلی، ارزیابی میدانی و نقشه رقبا
+       ========================================================= -->
+  <section class="dossier-section" id="dossier">
+    <div class="section-title">
+      <span class="sub-title"><i class="fa-solid fa-folder-open"></i> پرونده تحلیلی و مستندات بازار</span>
+      <h3>چرا شهرستان تفت به این سامانه اختصاصی نیاز دارد؟</h3>
+      <p>
+        بررسی عملی و میدانی ما نشان داد هیچ‌یک از سامانه‌های بزرگ تحویل داروی کشوری، تفت را تحت پوشش قرار نداده‌اند. 
+        در ادامه مستندات اسکرین‌شات‌ها، تحلیل رقبا، ۸ سؤال ایده بالغ و بوم مدل کسب‌وکار آمده است.
+      </p>
+    </div>
+
+    <!-- بنر اعلان ادله شکست رقبا در تفت -->
+    <div class="proof-banner">
+      <div class="proof-banner-text">
+        <h4><i class="fa-solid fa-triangle-exclamation" style="color: var(--pink-neon);"></i> سند رسمی عدم پوشش تفت توسط رقبای بزرگ کشوری</h4>
+        <p>با استناد به تست‌های میدانی روی لوکیشن تفت (از جمله بلوار شهدای پرواز، شهرک قدس و مناطق مرکزی)، خطاهای زیر دریافت شده است:</p>
+      </div>
+      <div class="proof-badge">اثبات عدم وجود رقیب مستقیم در تفت 🎯</div>
+    </div>
+
+    <!-- کارت‌های شواهد تست میدانی (تصاویر و متون برگرفته از اسکرین‌شات‌های فایل تحلیلی) -->
+    <div class="evidence-grid">
+      <!-- تست ۱: اسنپ دکتر -->
+      <div class="evidence-card">
+        <div class="evidence-header">
+          <h5><i class="fa-solid fa-mobile-screen-button"></i> اسنپ دکتر (Snapp Doctor)</h5>
+          <span class="status-pill-fail">عدم سرویس‌دهی</span>
+        </div>
+        <div class="evidence-body">
+          <div class="mockup-ui">
+            <div style="font-weight: 700; margin-bottom: 6px; color: var(--text-dark);">
+              موقعیت آزموده شده: تفت، خیابان دارایی، کوچه دیبا
+            </div>
+            <div class="mockup-error">
+              <i class="fa-solid fa-circle-xmark"></i>
+              <span>«آدرس انتخابی شما در محدوده سرویس‌دهی نمی‌باشد.»</span>
+            </div>
+          </div>
+          <div class="evidence-footer">
+            <strong>نتیجه میدانی:</strong> هیچ داروخانه‌ای در تفت قادر به پذیرش سفارش از طریق اسنپ‌دکتر نیست و بیمار ناچار به مراجعه حضوری است.
+          </div>
+        </div>
+      </div>
+
+      <!-- تست ۲: اسنپ فود داروخانه -->
+      <div class="evidence-card">
+        <div class="evidence-header">
+          <h5><i class="fa-solid fa-bag-shopping"></i> اسنپ‌فود (بخش داروخانه یزد/تفت)</h5>
+          <span class="status-pill-fail">فروشگاه صفر</span>
+        </div>
+        <div class="evidence-body">
+          <div class="mockup-ui">
+            <div style="text-align: center; padding: 10px;">
+              <i class="fa-solid fa-box-open" style="font-size: 2.2rem; color: #c4a1ba; margin-bottom: 6px;"></i>
+              <div class="mockup-error" style="justify-content: center;">
+                «فروشگاهی با موقعیت انتخابی اعمال‌شده پیدا نشد.»
+              </div>
+            </div>
+          </div>
+          <div class="evidence-footer">
+            <strong>نتیجه میدانی:</strong> در شهرستان تفت حتی اقلام بدون نسخه (OTC) و بهداشتی نیز در دسترس پلتفرم نیست.
+          </div>
+        </div>
+      </div>
+
+      <!-- تست ۳: تپسی دارو -->
+      <div class="evidence-card">
+        <div class="evidence-header">
+          <h5><i class="fa-solid fa-car-side"></i> تپسی دارو (Tapsi Daroo)</h5>
+          <span class="status-pill-fail">خارج از محدوده</span>
+        </div>
+        <div class="evidence-body">
+          <div class="mockup-ui">
+            <div style="font-weight: 700; margin-bottom: 6px;">
+              موقعیت: یزد، تفت، بلوار شهدای پرواز، پلاک ۱
+            </div>
+            <div class="mockup-error">
+              <i class="fa-solid fa-ban"></i>
+              <span>«آدرس خارج از محدوده»</span>
+            </div>
+          </div>
+          <div class="evidence-footer">
+            <strong>نتیجه میدانی:</strong> سیستم نقشه تپسی نیز امکان جستجو و تحویل دارو برای شهروندان تفت را ناممکن اعلام می‌کند.
+          </div>
+        </div>
+      </div>
+
+      <!-- تست ۴: پزشک بوک و داروکده -->
+      <div class="evidence-card">
+        <div class="evidence-header">
+          <h5><i class="fa-solid fa-globe"></i> پزشک‌بوک و داروخانه‌های آنلاین</h5>
+          <span class="status-pill-fail">صرفاً پایتخت / پستی</span>
+        </div>
+        <div class="evidence-body">
+          <div class="mockup-ui">
+            <div style="font-weight: 700; margin-bottom: 6px;">
+              شهرهای مجاز: صرفاً تهران، کرج، مشهد
+            </div>
+            <div class="mockup-error" style="background: #fff8e6; color: #b7791f; border-color: #d69e2e;">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>انتظار پستی ۳-۲ روزه با هزینه ارسال گزاف!</span>
+            </div>
+          </div>
+          <div class="evidence-footer">
+            <strong>نتیجه میدانی:</strong> داروکده فاقد ثبت نسخه بیمار است؛ سفارش تکی اقلام از پلتفرم‌هایی چون دیجی‌دارو هزینه‌ای فراتر از خود دارو دارد!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- دکمه‌های ناوبری تب‌های تحلیلی دانشگاهی -->
+    <div class="dossier-tabs">
+      <button class="tab-btn active" onclick="switchDossierTab('tab-questions', this)">
+        <i class="fa-solid fa-list-check"></i> پرسش‌های هشت‌گانه ایده بالغ
+      </button>
+      <button class="tab-btn" onclick="switchDossierTab('tab-canvas', this)">
+        <i class="fa-solid fa-diagram-project"></i> بوم مدل کسب‌وکار (BMC)
+      </button>
+      <button class="tab-btn" onclick="switchDossierTab('tab-funnel', this)">
+        <i class="fa-solid fa-filter"></i> قیف فروش ۷ مرحله‌ای
+      </button>
+      <button class="tab-btn" onclick="switchDossierTab('tab-frictions', this)">
+        <i class="fa-solid fa-fire-flame-curved"></i> اصطکاک‌ها و ارزش واسطه‌ای
+      </button>
+    </div>
+
+    <!-- تب ۱: هشت سؤال ایده بالغ طبق سند درس دانشگاهی -->
+    <div id="tab-questions" class="tab-content active">
+      <div class="questions-grid">
+        <div class="question-card">
+          <span class="q-num">۱</span>
+          <h4>تقاضای بالفعل و نیاز واقعی در بازار؟</h4>
+          <p>بله، تهیه نسخه دارویی نیازی روزمره و حیاتی است. شلوغی و صف داروخانه‌ها و عدم آگاهی از موجودی داروهای نسخه موجب سردرگمی بیماران در تفت می‌شود.</p>
+        </div>
+        <div class="question-card">
+          <span class="q-num">۲</span>
+          <h4>پاسخ به نیازی واقعی یا فرضیات ذهنی طراح؟</h4>
+          <p>متکی بر دو نیاز قطعی: ۱) کاهش شدید زمان معطلی حضوری ۲) منعطف‌سازی پرداخت هزینه‌های سنگین درمانی با اقساط و وام در کنار نیکوکاری دارویی.</p>
+        </div>
+        <div class="question-card">
+          <span class="q-num">۳</span>
+          <h4>طبقه‌بندی ایده (بنیادین، ترکیبی، تطبیقی)؟</h4>
+          <p>ترکیبی و تطبیقی: ترکیب قابلیت‌های آنلاین با سرویس‌های آماده‌سازی محلی پیش از حضور، تقسیط نسخه، تجهیزات پزشکی و تطبیق با بوم شهرستان تفت.</p>
+        </div>
+        <div class="question-card">
+          <span class="q-num">۴</span>
+          <h4>سقف رشد طبیعی و مقیاس‌پذیری؟</h4>
+          <p>آغاز از داروخانه‌های محوری شهرستان تفت، اتصال سریع به شبکه داروخانه‌های تخصصی شهر یزد و سپس پوشش سراسری کلیه شهرستان‌های استان یزد.</p>
+        </div>
+        <div class="question-card">
+          <span class="q-num">۵</span>
+          <h4>مشتریان دقیقاً بابت چه ارزشی پول می‌پردازند؟</h4>
+          <p>صرفه‌جویی قطعی در زمان، اطمینان از آماده بودن کامل اقلام دارویی پیش از خروج، امکان خرید اقساطی تجهیزات و کارمزد جزئی خدمات واسطه‌ای آماده‌سازی.</p>
+        </div>
+        <div class="question-card">
+          <span class="q-num">۶</span>
+          <h4>امکان ارزیابی میدانی و دریافت فیدبک اولیه؟</h4>
+          <p>بله، از طریق مصاحبه با مراجعان داروخانه‌های منتخب تفت و کادر داروخانه، نیاز به حذف صف و استقبال از پیش‌ثبت کد رهگیری الکترونیک اثبات شده است.</p>
+        </div>
+        <div class="question-card">
+          <span class="q-num">۷</span>
+          <h4>سناریوهای واکنشی در صورت بروز مانع عملیاتی؟</h4>
+          <p>در صورت کسری اقلام: ارائه داروی ژنریک جایگزین با تأیید پزشک/بیمار. در صورت ناخوانا بودن نسخه کاغذی: درخواست ارسال مجدد یا وارد کردن کد رهگیری تامین اجتماعی/سلامت.</p>
+        </div>
+        <div class="question-card">
+          <span class="q-num">۸</span>
+          <h4>وضعیت جاری بازار بدون حضور این سامانه؟</h4>
+          <p>بیمار با نسخه به داروخانه می‌آید، در صف طولانی منتظر می‌ماند، متوجه نبود یکی از اقلام می‌شود، مجدداً به داروخانه دیگری مراجعه می‌کند و هزینه را نقدی و سنگین می‌پردازد.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- تب ۲: بوم مدل کسب و کار -->
+    <div id="tab-canvas" class="tab-content">
+      <div class="canvas-grid">
+        <div class="canvas-box">
+          <h5><i class="fa-solid fa-handshake"></i> شرکای کلیدی</h5>
+          <ul>
+            <li>داروخانه‌های شهرستان تفت و استان یزد</li>
+            <li>درگاه‌های پرداخت الکترونیک و سرویس‌های اعتباری (BNPL)</li>
+            <li>مراکز خیریه سلامت و حامیان نیکوکار</li>
+            <li>پزشکان و کلینیک‌های طرف قرارداد منطقه</li>
+          </ul>
+        </div>
+        <div class="canvas-box">
+          <h5><i class="fa-solid fa-gears"></i> فعالیت‌های کلیدی</h5>
+          <ul>
+            <li>دریافت و پردازش تصویر و کد نسخه الکترونیک</li>
+            <li>استعلام زنده موجودی و قیمت‌گذاری داروخانه</li>
+            <li>اطلاع‌رسانی وضعیت آماده‌سازی پیامکی</li>
+            <li>هماهنگی خدمات اقساطی و تجهیزات پزشکی</li>
+          </ul>
+        </div>
+        <div class="canvas-box span-2">
+          <h5><i class="fa-solid fa-gem"></i> ارزش‌های پیشنهادی</h5>
+          <ul>
+            <li><strong>حذف کامل صف:</strong> تحویل آنی دارو با ارائه کد تحویل ویژه در تفت</li>
+            <li><strong>شفافیت مالی:</strong> استعلام اقلام و هزینه دقیق پیش از مراجعه</li>
+            <li><strong>خرید اقساطی:</strong> کاهش فشار مالی داروهای گران‌قیمت و بیماری‌های مزمن</li>
+            <li><strong>مسئولیت اجتماعی:</strong> امکان مشارکت آسان در هزینه داروی نیازمندان</li>
+          </ul>
+        </div>
+        <div class="canvas-box">
+          <h5><i class="fa-solid fa-heart"></i> ارتباط با مشتریان</h5>
+          <ul>
+            <li>پنل کاربری پیگیری لحظه‌ای سفارش</li>
+            <li>پشتیبانی آنلاین و پاسخگویی تلفنی</li>
+            <li>ارسال خودکار پیامک در لحظه بسته‌بندی دارو</li>
+          </ul>
+        </div>
+        <div class="canvas-box">
+          <h5><i class="fa-solid fa-cubes"></i> منابع کلیدی</h5>
+          <ul>
+            <li>زیرساخت ابری امن و وب‌اپلیکیشن کاربردی</li>
+            <li>پایگاه داده دارویی و کدگذاری نسخ الکترونیک</li>
+            <li>شبکه داروخانه‌داران همکار در تفت</li>
+          </ul>
+        </div>
+        <div class="canvas-box span-2">
+          <h5><i class="fa-solid fa-users"></i> بخش مشتریان</h5>
+          <ul>
+            <li>بیماران و خانواده‌های ساکن تفت و حومه</li>
+            <li>بیماران مبتلا به بیماری‌های خاص یا مزمن نیازمند تجهیزات تنفسی/ویلچر</li>
+            <li>داروخانه‌هایی که به دنبال نظم‌دهی و کاهش ازدحام هستند</li>
+          </ul>
+        </div>
+        <div class="canvas-box span-2">
+          <h5><i class="fa-solid fa-receipt"></i> ساختار هزینه‌ها</h5>
+          <ul>
+            <li>توسعه نرم‌افزاری و هزینه‌های زیرساخت سرور و پیامک</li>
+            <li>هزینه‌های حقوق پشتیبانی و نظارت دارویی</li>
+            <li>بازاریابی محلی و نصب استند QR در داروخانه‌ها</li>
+          </ul>
+        </div>
+        <div class="canvas-box span-2">
+          <h5><i class="fa-solid fa-sack-dollar"></i> جریان‌های درآمدی</h5>
+          <ul>
+            <li>حق اشتراک دوره‌ای نرم‌افزار داروخانه‌ها</li>
+            <li>کارمزد جزئی از تراکنش‌های اقساطی و وام درمانی</li>
+            <li>سهم کارمزد اجاره و فروش تجهیزات پزشکی تخصصی</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- تب ۳: قیف فروش ۷ مرحله‌ای -->
+    <div id="tab-funnel" class="tab-content">
+      <div style="background: white; border-radius: 24px; padding: 30px; border: 1px solid #ebd4e5;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+          <div style="background: #faf4f8; padding: 18px; border-radius: 16px; border-right: 4px solid var(--purple-accent);">
+            <div style="font-weight: 900; color: var(--wine-primary); margin-bottom: 6px;">۱. آگاهی (Awareness)</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin:0;">معرفی از طریق QR کدهای استند داروخانه‌ها در تفت، شبکه‌های اجتماعی و تبلیغ پزشکان.</p>
+          </div>
+          <div style="background: #faf4f8; padding: 18px; border-radius: 16px; border-right: 4px solid var(--pink-neon);">
+            <div style="font-weight: 900; color: var(--wine-primary); margin-bottom: 6px;">۲. ورود و اعتماد</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin:0;">مشاهده شعار محوری: «نسخه‌ات را آنلاین بفرست و فقط برای تحویل به داروخانه برو».</p>
+          </div>
+          <div style="background: #faf4f8; padding: 18px; border-radius: 16px; border-right: 4px solid var(--purple-light);">
+            <div style="font-weight: 900; color: var(--wine-primary); margin-bottom: 6px;">۳. بررسی خدمات</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin:0;">بررسی داروخانه‌های فعال تفت، گزینه‌های تقسیط و خدمات تجهیزات توانبخشی.</p>
+          </div>
+          <div style="background: #faf4f8; padding: 18px; border-radius: 16px; border-right: 4px solid var(--gold-accent);">
+            <div style="font-weight: 900; color: var(--wine-primary); margin-bottom: 6px;">۴. اقدام (Action)</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin:0;">بارگذاری عکس نسخه یا وارد کردن کد رهگیری نسخه الکترونیک در ساده‌ترین فرم.</p>
+          </div>
+          <div style="background: #faf4f8; padding: 18px; border-radius: 16px; border-right: 4px solid var(--wine-primary);">
+            <div style="font-weight: 900; color: var(--wine-primary); margin-bottom: 6px;">۵. تبدیل و تایید</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin:0;">بررسی قیمت اعلامی داروخانه توسط بیمار، تأیید و انتخاب پرداخت کامل یا اقساطی.</p>
+          </div>
+          <div style="background: #faf4f8; padding: 18px; border-radius: 16px; border-right: 4px solid #2b8a3e;">
+            <div style="font-weight: 900; color: var(--wine-primary); margin-bottom: 6px;">۶. دریافت خدمت</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin:0;">دریافت پیامک «آماده تحویل» و مراجعه سریع بیمار برای تحویل بسته بسته‌بندی‌شده.</p>
+          </div>
+          <div style="background: #faf4f8; padding: 18px; border-radius: 16px; border-right: 4px solid #7209b7;">
+            <div style="font-weight: 900; color: var(--wine-primary); margin-bottom: 6px;">۷. وفاداری و بازگشت</div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin:0;">ثبت تاریخچه داروها و یادآوری دوره‌ای تمدید نسخ بیماران مزمن جهت سفارش مجدد آسان.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- تب ۴: اصطکاک‌ها و کارکردهای چندگانه واسطه -->
+    <div id="tab-frictions" class="tab-content">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+        <div style="background: white; border-radius: 20px; padding: 24px; border: 1px solid #ecd3e5;">
+          <h4 style="color: var(--wine-primary); font-weight: 800; margin-bottom: 14px;"><i class="fa-solid fa-fire" style="color: #e63946;"></i> اصطکاک‌های مدل سنتی در تفت</h4>
+          <ul style="padding-right: 20px; font-size: 0.9rem; color: var(--text-muted); line-height: 2;">
+            <li>مراجعه حضوری فقط برای شروع پروسه پیگیری دارو</li>
+            <li>تراکم جمعیت در ساعات اوج عصر و شب در داروخانه‌های تفت</li>
+            <li>عدم قطعیت درباره موجود بودن تمام اقلام نسخه</li>
+            <li>بی‌اطلاعی از هزینه نهایی تا پایان فرآیند نسخه پیچی</li>
+            <li>فشار روانی و خستگی کارمندان داروخانه حین پاسخگویی همزمان به صف</li>
+          </ul>
+        </div>
+        <div style="background: white; border-radius: 20px; padding: 24px; border: 1px solid #ecd3e5;">
+          <h4 style="color: var(--wine-primary); font-weight: 800; margin-bottom: 14px;"><i class="fa-solid fa-shield-halved" style="color: var(--purple-accent);"></i> کارکردهای ۶ گانه واسطه هوشمند داروتفت</h4>
+          <ul style="padding-right: 20px; font-size: 0.9rem; color: var(--text-muted); line-height: 2;">
+            <li><strong>واسطه ارتباطی:</strong> تعامل شفاف و مستقیم بین بیمار و مسئول فنی داروخانه</li>
+            <li><strong>واسطه اطلاعاتی:</strong> انتقال دقیق کد نسخه، دوز، قیمت و وضعیت موجودی</li>
+            <li><strong>واسطه معاملاتی:</strong> تضمین پرداخت امن و امکان انتخاب شیوه اقساط</li>
+            <li><strong>واسطه پیگیری:</strong> ارائه استتوس زنده سفارش تا لحظه تحویل</li>
+            <li><strong>واسطه مالی:</strong> اتصال به صندوق‌های تأمین مالی و نیکوکاری</li>
+            <li><strong>هماهنگ‌کننده یکپارچه:</strong> صفر کردن اتلاف زمان طرفین</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       بخش دوم: هسته اصلی پروژه - فرم تعاملی ثبت و آماده‌سازی نسخه
+       ========================================================= -->
+  <section class="core-section" id="core-rx">
+    <div class="section-title">
+      <span class="sub-title"><i class="fa-solid fa-heart-pulse"></i> هسته اصلی پلتفرم</span>
+      <h3>ثبت و آماده‌سازی آنلاین نسخه پزشکی</h3>
+      <p>تصویر نسخه یا کد پیگیری الکترونیک را وارد کنید، داروخانه دلخواه در تفت یا یزد را انتخاب کرده و نسخه را بدون صف تحویل بگیرید.</p>
+    </div>
+
+    <div class="rx-box">
+      <!-- انتخاب نحوه ارسال نسخه -->
+      <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+        <button type="button" class="tab-btn active" id="btn-mode-code" onclick="setRxMode('code')">
+          <i class="fa-solid fa-keyboard"></i> نسخه الکترونیکی (کد ملی / کد رهگیری)
+        </button>
+        <button type="button" class="tab-btn" id="btn-mode-image" onclick="setRxMode('image')">
+          <i class="fa-solid fa-camera"></i> آپلود تصویر نسخه کاغذی
+        </button>
+      </div>
+
+      <!-- فرم اطلاعات -->
+      <div class="form-grid">
+        <div class="form-group" id="group-national-code">
+          <label><i class="fa-solid fa-id-card"></i> کد ملی بیمار:</label>
+          <input type="text" id="rx-national-id" class="form-control" placeholder="مثال: ۴۴۳۰۵۴۱۲۳۴">
+        </div>
+        <div class="form-group" id="group-tracking-code">
+          <label><i class="fa-solid fa-receipt"></i> کد رهگیری نسخه الکترونیک (تأمین اجتماعی یا سلامت):</label>
+          <input type="text" id="rx-code" class="form-control" placeholder="کد عددی ۵ یا ۶ رقمی پیامک شده از بیمه">
+        </div>
+        <div class="form-group">
+          <label><i class="fa-solid fa-phone"></i> شماره همراه بیمار (جهت ارسال پیامک آماده بودن دارو):</label>
+          <input type="tel" id="rx-phone" class="form-control" placeholder="مثال: ۰۹۱۳۱۲۳۴۵۶۷">
+        </div>
+        <div class="form-group">
+          <label><i class="fa-solid fa-calendar-check"></i> زمان ترجیحی شما برای مراجعه و تحویل:</label>
+          <select id="rx-pickup-time" class="form-control">
+            <option>امروز - عصر (ساعت ۱۸ الی ۲۰)</option>
+            <option>امروز - شب (ساعت ۲۰ الی ۲۲)</option>
+            <option>فردا - صبح (ساعت ۹ الی ۱۲)</option>
+            <option>فوری (در کوتاه‌ترین زمان ممکن)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- زون آپلود تصویر (در حالت عکس) -->
+      <div class="upload-zone" id="upload-container" style="display: none;" onclick="document.getElementById('file-input').click()">
+        <input type="file" id="file-input" style="display: none;" accept="image/*" onchange="fileSelected(this)">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <h5 style="font-weight: 800; color: var(--wine-primary); margin-bottom: 6px;">تصویر واضح نسخه کاغذی را اینجا رها کنید یا کلیک نمایید</h5>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin:0;">فرمت‌های مجاز: JPG, PNG (حداکثر ۵ مگابایت)</p>
+        <span id="file-name-display" style="display: block; margin-top: 8px; font-weight: 700; color: var(--pink-neon);"></span>
+      </div>
+
+      <!-- انتخاب داروخانه معتمد در تفت و یزد -->
+      <div class="pharmacy-selector">
+        <label><i class="fa-solid fa-hospital"></i> داروخانه همکار موردنظر خود را جهت آماده‌سازی انتخاب کنید:</label>
+        <div class="pharmacy-grid">
+          <div class="pharmacy-card selected" onclick="selectPharmacy(this, 'داروخانه شبانه‌روزی تفت (میدان امام)')">
+            <div class="pharmacy-icon"><i class="fa-solid fa-hospital-user"></i></div>
+            <div class="pharmacy-info">
+              <h6>داروخانه شبانه‌روزی مرکزی تفت</h6>
+              <p>تفت، میدان امام خمینی - پاسخگویی ۲۴ ساعته</p>
+            </div>
+          </div>
+          <div class="pharmacy-card" onclick="selectPharmacy(this, 'داروخانه دکتر دهقانی تفت')">
+            <div class="pharmacy-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></div>
+            <div class="pharmacy-info">
+              <h6>داروخانه دکتر دهقانی تفت</h6>
+              <p>تفت، بلوار شهدای پرواز - جنب درمانگاه</p>
+            </div>
+          </div>
+          <div class="pharmacy-card" onclick="selectPharmacy(this, 'داروخانه تخصصی یزد (تأمین داروهای خاص)')">
+            <div class="pharmacy-icon"><i class="fa-solid fa-pills"></i></div>
+            <div class="pharmacy-info">
+              <h6>داروخانه تخصصی مرکزی یزد</h6>
+              <p>ویژه داروهای پیوند، شیمی‌درمانی و کمیاب</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- دکمه نهایی ثبت -->
+      <div style="text-align: center;">
+        <button type="button" class="btn-main" onclick="submitPrescription()" style="width: 100%; max-width: 480px; justify-content: center; font-size: 1.1rem; padding: 16px;">
+          <i class="fa-solid fa-paper-plane"></i>
+          ثبت نسخه و درخواست آماده‌سازی پیش از حضور
+        </button>
+      </div>
+
+      <div id="rx-success-msg" style="display: none;" class="alert-success-custom">
+        <i class="fa-solid fa-circle-check" style="font-size: 1.6rem;"></i>
+        <div>
+          <div style="font-size: 1.05rem;">نسخه شما با موفقیت برای داروخانه ارسال شد!</div>
+          <div style="font-size: 0.85rem; font-weight: normal; margin-top: 3px;">
+            کد رهگیری سامانه داروتفت: <strong id="out-track-code">DFT-9842</strong> | کارشناسان داروخانه در حال کنترل موجودی و قیمت‌گذاری اقلام هستند. نتیجه پیامک خواهد شد.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       بخش سوم: خدمات مکمل (اقساط سلامت، صندوق خیریه و تجهیزات)
+       ========================================================= -->
+  <section class="services-section" id="installments">
+    <div class="section-title">
+      <span class="sub-title"><i class="fa-solid fa-sparkles"></i> امکانات جامع و مکمل</span>
+      <h3>خدمات مالی، حمایتی و تجهیزات پزشکی</h3>
+      <p>فراتر از یک ثبت نسخه ساده؛ تسهیل دسترسی به تجهیزات توانبخشی و کاهش بار مالی درمان بیماران تفت</p>
+    </div>
+
+    <div class="services-grid">
+      
+      <!-- سرویس ۱: پرداخت اقساطی و ماشین‌حساب وام درمان -->
+      <div class="service-card">
+        <span class="service-badge">طرح رفاه سلامت</span>
+        <div class="service-header">
+          <div class="service-icon-box">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <h4>پرداخت اقساطی و وام درمان</h4>
+          <p>امکان تقسیط هزینه‌های نسخه، داروهای دوره‌ای و لوازم پزشکی واجد شرایط از ۳ الی ۱۲ ماه بدون ضامن بانکی برای همشهریان تفتی.</p>
+        </div>
+
+        <div class="calculator-box">
+          <div class="calc-range-group">
+            <label>
+              <span>مبلغ کل برآورد نسخه یا تجهیزات:</span>
+              <strong id="display-amount" style="color: var(--pink-neon);">۳,۵۰۰,۰۰۰ تومان</strong>
+            </label>
+            <input type="range" id="input-amount" min="1000000" max="25000000" step="500000" value="3500000" oninput="updateCalculator()">
+          </div>
+
+          <div class="calc-range-group">
+            <label>
+              <span>تعداد اقساط:</span>
+              <strong id="display-months" style="color: var(--purple-accent);">۴ ماهه</strong>
+            </label>
+            <input type="range" id="input-months" min="2" max="12" step="1" value="4" oninput="updateCalculator()">
+          </div>
+
+          <div class="calc-result">
+            <span>مبلغ تقریبی هر قسط:</span>
+            <strong id="display-installment">۸۷۵,۰۰۰ تومان</strong>
+          </div>
+        </div>
+
+        <button type="button" class="btn-secondary" style="width: 100%; margin-top: 18px; justify-content: center;" onclick="alert('درخواست بررسی اعتبار اقساطی شما ثبت گردید. همکاران مالی با شما تماس خواهند گرفت.')">
+          <i class="fa-solid fa-file-invoice-dollar"></i> درخواست تسویه اقساطی
+        </button>
+      </div>
+
+      <!-- سرویس ۲: صندوق حمایت و خیریه دارویی -->
+      <div class="service-card" id="charity">
+        <span class="service-badge" style="background: #ffe5ec; color: #d81159;">همدلی تفت</span>
+        <div class="service-header">
+          <div class="service-icon-box" style="color: #d81159;">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </div>
+          <h4>صندوق نیکوکاری و خیریه دارویی</h4>
+          <p>با هر مبلغ دلخواه، در تأمین دارو و تجهیزات تنفسی بیماران بی‌بضاعت شهرستان تفت سهیم شوید. تمامی مبالغ مستقیماً به نسخه بیماران نیازمند اختصاص می‌یابد.</p>
+        </div>
+
+        <div class="charity-box">
+          <div style="font-size: 0.85rem; font-weight: 800; color: var(--wine-primary); margin-bottom: 10px;">
+            انتخاب مبلغ اهدایی:
+          </div>
+          <div class="donation-buttons">
+            <button type="button" class="btn-donate-amount" onclick="selectDonation(50000, this)">۵۰ هزار ت</button>
+            <button type="button" class="btn-donate-amount active" onclick="selectDonation(100000, this)">۱۰۰ هزار ت</button>
+            <button type="button" class="btn-donate-amount" onclick="selectDonation(200000, this)">۲۰۰ هزار ت</button>
+            <button type="button" class="btn-donate-amount" onclick="selectDonation('custom', this)">دلخواه</button>
+          </div>
+
+          <input type="number" id="custom-donation" class="form-control" placeholder="مبلغ دلخواه به تومان..." style="display: none; margin-bottom: 12px; padding: 10px;">
+
+          <button type="button" class="btn-donate-submit" onclick="donateSubmit()">
+            <i class="fa-solid fa-heart"></i> پرداخت آنلاین کمک دارویی
+          </button>
+        </div>
+
+        <div id="charity-success" style="display: none; font-size: 0.8rem; background: #e8f5e9; color: #2e7d32; padding: 10px; border-radius: 12px; margin-top: 12px; font-weight: 700;">
+          ❤️ مبلغ <span id="donated-val">۱۰۰,۰۰۰</span> تومان با موفقیت به صندوق تأمین داروی نیازمندان تفت اهدا شد. اجر شما با خداوند.
+        </div>
+      </div>
+
+      <!-- سرویس ۳: اجاره و خرید تجهیزات پزشکی در تفت -->
+      <div class="service-card" id="equipment">
+        <span class="service-badge">تحویل درب منزل در تفت</span>
+        <div class="service-header">
+          <div class="service-icon-box" style="color: var(--purple-accent);">
+            <i class="fa-solid fa-kit-medical"></i>
+          </div>
+          <h4>خرید و اجاره تجهیزات توانبخشی</h4>
+          <p>تأمین فوری کپسول اکسیژن، دستگاه‌های تنفسی، تخت‌های بیمارستانی بیمار در منزل و انواع ویلچر و واکر با شرایط اجاره روزانه و ماهانه.</p>
+        </div>
+
+        <div class="equipment-mini-grid">
+          <div class="equipment-item">
+            <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=300&q=80" alt="ویلچر">
+            <h6>ویلچر تاشو ارتوپدی</h6>
+            <span>اجاره: روزی ۴۵ ت</span>
+          </div>
+          <div class="equipment-item">
+            <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=300&q=80" alt="اکسیژن ساز">
+            <h6>دستگاه اکسیژن‌ساز ۵L</h6>
+            <span>اجاره ماهانه موجود</span>
+          </div>
+          <div class="equipment-item">
+            <img src="https://images.unsplash.com/photo-1583912267670-6575ad472688?auto=format&fit=crop&w=300&q=80" alt="تخت بیمارستانی">
+            <h6>تخت بیمارستانی مکانیکی</h6>
+            <span>خرید و اجاره</span>
+          </div>
+          <div class="equipment-item">
+            <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=300&q=80" alt="واکر عصا">
+            <h6>واکر آلومینیومی چرخ‌دار</h6>
+            <span>موجودی آماده تحویل</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn-secondary" style="width: 100%; margin-top: 18px; justify-content: center;" onclick="alert('کاتالوگ کامل و استعلام قیمت تجهیزات جهت هماهنگی با شما ارسال خواهد شد.')">
+          <i class="fa-solid fa-list"></i> مشاهده کاتالوگ و شرایط اجاره
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =========================================================
+       بخش چهارم: پیگیری زنده سفارش (Live Stepper & Dashboard)
+       ========================================================= -->
+  <section class="tracking-section" id="tracking">
+    <div class="section-title">
+      <span class="sub-title"><i class="fa-solid fa-route"></i> رهگیری زنده دارو</span>
+      <h3>داشبورد وضعیت و بوم پویای نسخه شما</h3>
+      <p>از لحظه ثبت کد رهگیری تا بسته‌بندی نهایی در داروخانه، در هر لحظه وضعیت سفارش خود را به طور زنده ببینید.</p>
+    </div>
+
+    <div class="tracker-card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; border-bottom: 2px solid var(--lilac-bg); padding-bottom: 16px;">
+        <div>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">شماره پیگیری سفارش نمونه:</span>
+          <strong style="color: var(--wine-primary); font-size: 1.15rem; margin-right: 6px;">DFT-88419</strong>
+        </div>
+        <div>
+          <span style="background: #fdf2f7; color: var(--pink-neon); border: 1px solid var(--lilac-soft); font-size: 0.8rem; font-weight: 800; padding: 6px 14px; border-radius: 20px;">
+            داروخانه شبانه‌روزی مرکزی تفت
+          </span>
+        </div>
+      </div>
+
+      <!-- استپر ۷ مرحله‌ای طبق داکیومنت -->
+      <div class="stepper">
+        <div class="step-item completed">
+          <div class="step-bubble"><i class="fa-solid fa-check"></i></div>
+          <h6>۱. ثبت نسخه</h6>
+          <p>دریافت آنلاین</p>
+        </div>
+        <div class="step-item completed">
+          <div class="step-bubble"><i class="fa-solid fa-check"></i></div>
+          <h6>۲. بررسی دکتر</h6>
+          <p>کنترل موجودی</p>
+        </div>
+        <div class="step-item completed">
+          <div class="step-bubble"><i class="fa-solid fa-check"></i></div>
+          <h6>۳. اعلام هزینه</h6>
+          <p>شفاف‌سازی مالی</p>
+        </div>
+        <div class="step-item active">
+          <div class="step-bubble"><i class="fa-solid fa-box-open"></i></div>
+          <h6>۴. آماده‌سازی</h6>
+          <p>در حال چیدمان</p>
+        </div>
+        <div class="step-item">
+          <div class="step-bubble">۵</div>
+          <h6>۵. پیامک اطلاع</h6>
+          <p>ارسال کد تحویل</p>
+        </div>
+        <div class="step-item">
+          <div class="step-bubble">۶</div>
+          <h6>۶. مراجعه و تحویل</h6>
+          <p>بدون صف (۲ دقیقه‌ای)</p>
+        </div>
+      </div>
+
+      <div style="background: #faf4f8; border-radius: 18px; padding: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+        <div>
+          <h5 style="color: var(--wine-primary); font-weight: 800; font-size: 0.95rem; margin-bottom: 4px;">
+            <i class="fa-solid fa-circle-info" style="color: var(--purple-accent);"></i> اقلام این نسخه در حال آماده‌سازی و بسته‌بندی در داروخانه تفت است
+          </h5>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">به محض اتمام، پیامک حاوی بارکد تحویل فوری به شماره همراه شما ارسال خواهد شد.</p>
+        </div>
+        <button class="btn-secondary" style="font-size: 0.85rem; padding: 10px 20px;" onclick="alert('آخرین وضعیت: ۳ قلم از ۳ قلم دارو تأمین شده و فاکتور نهایی صادر گردیده است.')">
+          <i class="fa-solid fa-arrows-rotate"></i> بروزرسانی زنده
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- فوتر شیک و حرفه‌ای -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand-logo" style="margin-bottom: 18px;">
+          <div class="logo-icon" style="background: linear-gradient(135deg, var(--pink-neon), var(--purple-accent));">
+            <i class="fa-solid fa-mortar-pestle"></i>
+          </div>
+          <div class="logo-text">
+            <h1 style="color: white; -webkit-text-fill-color: initial;">سامانه داروتفت</h1>
+            <span style="color: var(--lilac-soft);">پروژه تخصصی سلامت الکترونیک تفت</span>
+          </div>
+        </div>
+        <p>
+          سامانه هوشمند آماده‌سازی نسخه و خدمات سلامت، طراحی‌شده جهت رفع محرومیت خدمات آنلاین دارویی در شهرستان تفت و اتصال یکپارچه شهروندان به داروخانه‌های فعال استان یزد.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>دسترسی سریع</h4>
+        <ul class="footer-links">
+          <li><a href="#core-rx"><i class="fa-solid fa-angle-left"></i> ثبت نسخه با کد رهگیری</a></li>
+          <li><a href="#dossier"><i class="fa-solid fa-angle-left"></i> پرونده میدانی رقبای تفت</a></li>
+          <li><a href="#installments"><i class="fa-solid fa-angle-left"></i> ماشین‌حساب اقساط درمان</a></li>
+          <li><a href="#charity"><i class="fa-solid fa-angle-left"></i> صندوق خیریه دارویی تفت</a></li>
+          <li><a href="#equipment"><i class="fa-solid fa-angle-left"></i> اجاره دستگاه اکسیژن و تخت</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>مستندات درس</h4>
+        <ul class="footer-links">
+          <li><a href="#dossier"><i class="fa-solid fa-check-double"></i> ۸ سؤال ایده بالغ</a></li>
+          <li><a href="#dossier"><i class="fa-solid fa-check-double"></i> بوم مدل کسب‌وکار (BMC)</a></li>
+          <li><a href="#dossier"><i class="fa-solid fa-check-double"></i> قیف فروش و تبدیل کاربر</a></li>
+          <li><a href="https://yazd-ec-project.vercel.app/#sec-overview" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> پورتال پروژه دانشگاه یزد</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>اطلاعات پشتیبانی تفت</h4>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>یزد، شهرستان تفت، بلوار شهدای پرواز، دفتر پایش داروتفت</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <span>۰۳۵-۳۲۶۲۰۰۰۰ (پاسخگویی دارویی تفت)</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>info@taft-pharma.ir</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      تمامی حقوق این پروژه متعلق به «سامانه خدمات داروخانه‌ای و آماده‌سازی نسخه تفت و یزد» است. توسعه یافته برای تسهیل خدمت‌رسانی به مردم شریف تفت.
+    </div>
+  </footer>
+
+  <!-- =========================================================
+       کدهای تعاملی جاوااسکریپت (ماشین‌حساب، تب‌ها و فرم‌ها)
+       ========================================================= -->
+  <script>
+    // تغییر تب‌های بخش پرونده تحلیلی
+    function switchDossierTab(tabId, btnElement) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.dossier-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      document.getElementById(tabId).classList.add('active');
+      btnElement.classList.add('active');
+    }
+
+    // تغییر حالت ثبت نسخه (کد رهگیری یا آپلود عکس)
+    function setRxMode(mode) {
+      const codeGroup = document.getElementById('group-tracking-code');
+      const uploadZone = document.getElementById('upload-container');
+      const btnCode = document.getElementById('btn-mode-code');
+      const btnImage = document.getElementById('btn-mode-image');
+
+      if (mode === 'code') {
+        codeGroup.style.display = 'block';
+        uploadZone.style.display = 'none';
+        btnCode.classList.add('active');
+        btnImage.classList.remove('active');
+      } else {
+        codeGroup.style.display = 'none';
+        uploadZone.style.display = 'block';
+        btnImage.classList.add('active');
+        btnCode.classList.remove('active');
+      }
+    }
+
+    function fileSelected(input) {
+      if (input.files && input.files[0]) {
+        document.getElementById('file-name-display').innerText = '✅ فایل انتخاب شد: ' + input.files[0].name;
+      }
+    }
+
+    // انتخاب داروخانه
+    function selectPharmacy(card, name) {
+      document.querySelectorAll('.pharmacy-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    }
+
+    // ثبت نسخه و شبیه‌سازی تولید کد پیگیری
+    function submitPrescription() {
+      const phone = document.getElementById('rx-phone').value.trim();
+      const nationalId = document.getElementById('rx-national-id').value.trim();
+
+      if (!phone || phone.length < 10) {
+        alert('لطفاً شماره همراه معتبر خود را جهت هماهنگی و پیامک اعلام آماده بودن دارو وارد فرمایید.');
+        return;
+      }
+
+      const randomCode = 'DFT-' + Math.floor(1000 + Math.random() * 9000);
+      document.getElementById('out-track-code').innerText = randomCode;
+      
+      const successBox = document.getElementById('rx-success-msg');
+      successBox.style.display = 'flex';
+      successBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ماشین حساب تعاملی اقساط و وام درمان
+    function updateCalculator() {
+      const amount = parseInt(document.getElementById('input-amount').value);
+      const months = parseInt(document.getElementById('input-months').value);
+
+      document.getElementById('display-amount').innerText = amount.toLocaleString('fa-IR') + ' تومان';
+      document.getElementById('display-months').innerText = months.toLocaleString('fa-IR') + ' ماهه';
+
+      // محاسبه تقریبی قسط ماهیانه با سود بسیار ناچیز قرض‌الحسنه
+      const feeRate = 0.02; // کارمزد جزئی خدمات ۲ درصد
+      const total = amount * (1 + (feeRate * (months / 12)));
+      const perMonth = Math.round(total / months);
+
+      document.getElementById('display-installment').innerText = perMonth.toLocaleString('fa-IR') + ' تومان';
+    }
+
+    // انتخاب مبلغ خیریه
+    let currentDonation = 100000;
+    function selectDonation(val, btn) {
+      document.querySelectorAll('.btn-donate-amount').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const customInput = document.getElementById('custom-donation');
+      if (val === 'custom') {
+        customInput.style.display = 'block';
+        customInput.focus();
+        currentDonation = 'custom';
+      } else {
+        customInput.style.display = 'none';
+        currentDonation = val;
+      }
+    }
+
+    function donateSubmit() {
+      let finalVal = currentDonation;
+      if (finalVal === 'custom') {
+        const inp = document.getElementById('custom-donation').value;
+        if (!inp || inp <= 0) {
+          alert('لطفاً مبلغ موردنظر خود را وارد کنید.');
+          return;
+        }
+        finalVal = parseInt(inp);
+      }
+
+      document.getElementById('donated-val').innerText = finalVal.toLocaleString('fa-IR');
+      const box = document.getElementById('charity-success');
+      box.style.display = 'block';
+      setTimeout(() => {
+        box.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  </script>
+</body>
+</html>
